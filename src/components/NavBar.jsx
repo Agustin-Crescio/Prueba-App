@@ -2,7 +2,7 @@
 //Exportarlo
 //Importarlo en App.js
 
-
+import CartWidget from "./CartWidget"
 export default function     NavBar () {
     return (
         <nav>
@@ -16,6 +16,7 @@ export default function     NavBar () {
             <li className="nav-item">
                 <a className="nav-link" href="#">Contacto</a>
             </li>
+        <CartWidget/>
         </ul>
             </nav>
       
