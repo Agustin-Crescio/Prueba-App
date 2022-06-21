@@ -13,9 +13,9 @@ import{useState} from "react"
        
     }
     
-
+ 
   return(
-      <div>
+      <div className="container mx-auto mt-5 font-medium title-font">
           <button disabled={cant <= 1} onClick={resta}> - </button>
           <span>{cant}</span>
           <button disabled={cant >=  stock }  onClick={suma}> + </button>

@@ -8,7 +8,7 @@ import {productos} from "./mock/products.jsx";
 
 
 
-function ItemListContainer (props) {
+const ItemListContainer = ({ props}) => {
     
     const [products, setProducts] = useState([]);
 
@@ -20,7 +20,8 @@ function ItemListContainer (props) {
             }, 2000);
         });
        
-        traerProductos.then((res) => {
+        traerProductos
+        .then((res) => {
          setProducts(res);
         })
         .catch((error) => {
@@ -35,8 +36,8 @@ function ItemListContainer (props) {
 
 
     return(
-        <div>
-          <h1>  {props.saludo} </h1> 
+        <div className="container mx-auto mt-5">
+          <h1>  {props} </h1> 
           <ItemCount stock={15} initial={1} onAdd={onAdd}/>
           <ItemList items={products}/>
         </div>

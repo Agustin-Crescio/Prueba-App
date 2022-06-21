@@ -43,7 +43,7 @@ export const productos = [
     {
         id: 5,
         name: "Oakley",
-        price: 80,
+        price: 800,
         stock: 20,
         img: "./img/lentes5.jpg" ,
         category: "gafas",

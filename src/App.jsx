@@ -1,15 +1,18 @@
 
 import NavBar from "./components/NavBar";
 import ItemListContainer from "./components/ItemListContainer";
+import ItemDetailContainer from "./components/ItemDetailContainer.jsx/ItemDetailContainer";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="App mx-aut">
+      
         <NavBar />
         <ItemListContainer saludo="Bienvenidos a nuestro catálogo"/>
-      </header>
+        <ItemDetailContainer itemId= {4} greeting = "Detalle del producto"/>
+      
       </div>
+     
 
   );
 }
