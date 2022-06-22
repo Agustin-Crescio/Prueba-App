@@ -1,6 +1,9 @@
 import React from 'react';
+import {Link} from "react-router-dom"
 
 const Item = ({ item }) => {
+
+    const urlDetalle=`/detalle/${item.id}`
 
     const styles = {
         maxWidth: "380px",
@@ -21,6 +24,9 @@ const Item = ({ item }) => {
             <p>$ {item.description}</p>
             <hr />
             <br />
+            <Link to={urlDetalle}>
+            <button>Ver mas</button>
+            </Link>
                
             </div>
        

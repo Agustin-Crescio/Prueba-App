@@ -2,15 +2,28 @@
 import NavBar from "./components/NavBar";
 import ItemListContainer from "./components/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetailContainer.jsx/ItemDetailContainer";
+import  {BrowserRouter , Route , Routes} from"react-router-dom";
 
 function App() {
   return (
     <div className="App mx-aut">
-      
+      <BrowserRouter>
         <NavBar />
-        <ItemListContainer saludo="Bienvenidos a nuestro catálogo"/>
-        <ItemDetailContainer itemId= {4} greeting = "Detalle del producto"/>
-      
+          <Routes>
+            <Route path="/" element={
+               <ItemListContainer greeting="Bienvenidos a nuestro catálogo"/>
+            } />
+            <Route path="/category/:categoryId" element={
+               <ItemListContainer greeting="Categoria de Items"/>
+            } />
+             <Route path="/detalle/:itemId" element={
+               <ItemDetailContainer  greeting = "Detalle del producto"/>
+            } />
+           
+           
+           
+          </Routes>
+      </BrowserRouter >
       </div>
      
 
