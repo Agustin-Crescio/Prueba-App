@@ -20,7 +20,7 @@ import{useState} from "react"
           <span>{cant}</span>
           <button disabled={cant >=  stock }  onClick={suma}> + </button>
           <br />
-          <button onClick={ onAdd }>Terminar Compra</button>
+          <button onClick={ ()=> onAdd(cant) }>Terminar Compra</button>
       </div>
   )
 }

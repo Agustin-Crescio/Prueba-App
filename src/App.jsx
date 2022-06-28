@@ -2,10 +2,13 @@
 import NavBar from "./components/NavBar";
 import ItemListContainer from "./components/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetailContainer.jsx/ItemDetailContainer";
+import Cart from "./components/Cart/Cart"
 import  {BrowserRouter , Route , Routes} from"react-router-dom";
+import { CartProvider } from "./Context/CartContext";
 
 function App() {
   return (
+    <CartProvider> 
     <div className="App mx-aut">
       <BrowserRouter>
         <NavBar />
@@ -19,14 +22,13 @@ function App() {
              <Route path="/detalle/:itemId" element={
                <ItemDetailContainer  greeting = "Detalle del producto"/>
             } />
-           
-           
-           
+            <Route path="/Cart" element={
+              <Cart />
+            }/>
           </Routes>
       </BrowserRouter >
       </div>
-     
-
+     </CartProvider>
   );
 }
 

@@ -1,25 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ItemCount from '../ItemCount';
+import  {Link } from"react-router-dom";
+import {useNavigate} from"react-router-dom";
+import { useContext } from 'react';
+import { CartContext } from '../../Context/CartContext';
 
 export default function ItemDetail({item}) {
+  const {addToCart} = useContext (CartContext)
+  let navigate = useNavigate()
   const  [isAddedToCart , setAddedToCart] = React.useState(false);
+  const [cant , setCant] = useState(0)
 
 
-  function handleOnAdd(){
-    console.log("items agregados=", cant);
-    setAddedToCart(true);
+  const OnAdd = (cantidad)=> {
+    setCant(cantidad)
+    navigate ("/Cart")
+    addToCart(item,cantidad)
+  };
 
-  }
   return (
     <div >
+      <div>{item.img}</div>
         <h1>{item.name}</h1>
-        <p>{item.description}</p>
         <p>${item.price}</p>
-      {
-        (true)
-        ? <ItemCount onAdd={handleOnAdd} stock={15} initial={1}></ItemCount>
-        : <a href="/cart">Ver carrito</a>
-      }
+        <p>{item.description}</p>
+       
+        {cant === 0 ?( <ItemCount onAdd={OnAdd} stock={item.stock} initial={1}></ItemCount>
+          ) : (
+             <Link to="/Cart">Ir al carrito</Link>
+          ) };
+    
       
     </div>
   );
