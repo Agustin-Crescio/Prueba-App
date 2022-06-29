@@ -18,15 +18,15 @@ const ItemListContainer = ({ greeting}) => {
     
         const traerProductos = new Promise((res, rej) => {
             setTimeout(() => {
-                if (categoryId=== undefined)
+                if (categoryId == undefined)
                 res(productos);
                 else{
                   const  itemsFound= productos.find (detalle => {
-                        return detalle.id=== categoryId;
+                        return detalle.id == categoryId;
                      })
                 res(itemsFound)
                 }
-            }, 2000);
+            }, 1000);
            
         });
        
@@ -45,12 +45,12 @@ const ItemListContainer = ({ greeting}) => {
     }
 
 
-    return(
+    return (
         <div className="container mx-auto mt-5">
           <h1>  {greeting} </h1> 
           <ItemCount stock={15} initial={1} onAdd={onAdd}/>
           <ItemList items={products}/>
-          <a href="/detalle"></a>
+       
         </div>
     );
 }
