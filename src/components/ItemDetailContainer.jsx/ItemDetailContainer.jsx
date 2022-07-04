@@ -11,28 +11,29 @@ import  {useParams} from "react-router-dom";
 const ItemDetailContainer = ({ greeting}) => {
     
     const [product, setProduct] = useState({});
-    const {itemId} = useParams();
 
-    useEffect(() => {
+    const {categoryId} = useParams();
+
+   
     
         const traerProducto = new Promise((res, rej) => {
             setTimeout(() => {
            
                 const itemsFound= productos.find (detalle => {
-                   return detalle.id=== parseInt( itemId)
+                   return detalle.category === categoryId
                 })
             res(itemsFound)
             }, 2000);
         });
-       
-        traerProducto
+        useEffect(() => {
+        traerProducto()
         .then((res) => {
          setProduct(res);
         })
         .catch((error) => {
                 console.log(error);
             });
-    }, [itemId]);
+    }, [categoryId]);
 
 
 

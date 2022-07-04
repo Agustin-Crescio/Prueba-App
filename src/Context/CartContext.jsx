@@ -7,7 +7,7 @@ export const CartContext = createContext() ;
 export const CartProvider = ({children})=>{
 
 
-    const [cart , setCart]= useState()
+    const [cart , setCart]= useState([])
 
     const prueba = ()=> {
         console.log("gola");
