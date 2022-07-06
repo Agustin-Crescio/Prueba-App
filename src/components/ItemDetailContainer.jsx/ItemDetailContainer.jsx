@@ -8,19 +8,21 @@ import  {useParams} from "react-router-dom";
 
 
 
+
+
 const ItemDetailContainer = ({ greeting}) => {
     
     const [product, setProduct] = useState({});
 
-    const {categoryId} = useParams();
+    const {itemId} = useParams();
 
    
     
         const traerProducto = new Promise((res, rej) => {
             setTimeout(() => {
            
-                const itemsFound= productos.find (detalle => {
-                   return detalle.category === categoryId
+                const itemsFound= productos.filter (detalle => {
+                   return detalle.category === itemId
                 })
             res(itemsFound)
             }, 2000);
@@ -33,7 +35,7 @@ const ItemDetailContainer = ({ greeting}) => {
         .catch((error) => {
                 console.log(error);
             });
-    }, [categoryId]);
+    }, [itemId]);
 
 
 
@@ -46,4 +48,24 @@ const ItemDetailContainer = ({ greeting}) => {
  
     );
 }
+
 export default ItemDetailContainer;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

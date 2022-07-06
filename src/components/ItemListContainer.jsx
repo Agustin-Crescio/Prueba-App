@@ -12,19 +12,21 @@ import {useParams} from "react-router-dom";
 const ItemListContainer = ({ greeting}) => {
     
     const [products, setProducts] = useState([]);
-    const {categoryId} = useParams ()
+    const {categoryId} = useParams ();
 
     useEffect(() => {
     
         const traerProductos = new Promise((res, rej) => {
             setTimeout(() => {
-                if (categoryId == undefined)
-                res(productos);
+                if (categoryId === undefined){
+                    res(productos);  
+                }
+                
                 else{
-                  const  itemsFound= productos.find (detalle => {
-                        return detalle.id == categoryId;
-                     })
-                res(itemsFound)
+                  const  itemsFound = productos.filter (
+                    (prod) =>  prod.category === categoryId
+                     );
+                res(itemsFound);
                 }
             }, 1000);
            
@@ -32,12 +34,13 @@ const ItemListContainer = ({ greeting}) => {
        
         traerProductos
         .then((res) => {
+        console.log ("res:", res)
          setProducts(res);
         })
         .catch((error) => {
                 console.log(error);
             });
-    }, []);
+    }, [categoryId]);
 
 
     const onAdd = (quantity) => {
