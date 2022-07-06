@@ -1,7 +1,7 @@
 import React , {useState, useEffect} from "react";
-import {productos} from "../mock/products.jsx";
 import ItemDetail from "../ItemDetail/ItemDetail.jsx";
 import  {useParams} from "react-router-dom";
+import { traerUnProducto } from "../../services/firestore.js";
 
 
 
@@ -16,20 +16,11 @@ const ItemDetailContainer = ({ greeting}) => {
 
     const {itemId} = useParams();
 
-   
-    
-        const traerProducto = new Promise((res, rej) => {
-            setTimeout(() => {
-           
-                const itemsFound= productos.filter (detalle => {
-                   return detalle.category === itemId
-                })
-            res(itemsFound)
-            }, 2000);
-        });
+
         useEffect(() => {
-        traerProducto()
+        traerUnProducto(itemId)
         .then((res) => {
+            console.log ("traer producto",  res)
          setProduct(res);
         })
         .catch((error) => {

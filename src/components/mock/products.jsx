@@ -5,7 +5,7 @@ export const productos = [
         price: 200,
         stock: 4,
         img:"./img/lentes1.jpg"  ,
-        category: 'gafas1',
+        category: 'gafas1 ',
         description:
             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt iusto magni quaerat nisi quisquam? Error, earum aspernatur tenetur sint cum in quibusdam eos quae velit ratione maxime! Error, earum repellendus.',
     },
