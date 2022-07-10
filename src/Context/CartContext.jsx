@@ -4,40 +4,73 @@ import { useState } from "react";
 
 export const CartContext = createContext() ; 
 
-export const CartProvider = ({children})=>{
+export function CartProvider  (props) {
 
 
-    const [cart , setCart]= useState([])
+    const [cart , setCart]= useState([]);
 
-    const prueba = ()=> {
-        console.log("gola");
+
+function addToCart (item , cant){
+    if(isInCartContext(item.id)){
+        const idToAdd = item.id;
+        let itemToAdd = cart.find(cadaItem => cadaItem.id === idToAdd) 
+        itemToAdd.qnty += cant; 
+       let newCart =  cart.filter ( cadaItem => cadaItem.id !== item.id )
+        setCart([...newCart,{...itemToAdd}]);
+
+
     }
+    else{
+        setCart([...cart,{...item, qnty:cant}]);
+    }
+        
+ }
 
 
-    const addToCart = (item , cantidad)=>{
-        if(isInCart(item.id) ){
-                //sumo cant
-        }else{
-            setCart([...cart , {...item , cantidad}]);
-        }     
-};
-
-
-const isInCart = (id)=>{
-    return cart.some((prod)=>{
-        return prod.id === id;
-    } )
+function removeItem(id){
+    let newCart = cart.filter ( item => item.id !== id )
+    setCart (newCart);
 }
 
 
 
-const clearCart = ()=> {
-    setCart([]);
+function isInCartContext (id){
+    return cart.some ((item)=> item.id === id);
+
 }
+ 
+function qntyInCart (){
+    let total = 0;
+
+    cart.forEach((item)=> total = total + item.qnty);
+    return total ;
+}
+
+function clearCart(){
+    setCart([])
+}
+
+function totalPriceCart(){
+    let total = 0;
+    cart.forEach((item)=> total = total + (item.qnty * item.price ));
+    return total ;
+}
+
+
+
+
+
+
+
+
+
+
+
 
     return(    
-        <CartContext.Provider value={(cart , prueba)}>
-            {children}
+        <CartContext.Provider value={(cart , qntyInCart , totalPriceCart ,isInCartContext, addToCart ,clearCart , removeItem)}>
+            {props.children}
         </CartContext.Provider>
      ) ;
 }
+export default CartContext

@@ -2,7 +2,7 @@ import React , {useState, useEffect} from "react";
 import ItemCount from "./ItemCount";
 import ItemList from "./ItemList/ItemList";
 import {useParams} from "react-router-dom";
-import {traerProductos} from "../services/firestore"
+import {traerProductos, traerProductosDeCategoria} from "../services/firestore"
 
 
 
@@ -14,20 +14,26 @@ const ItemListContainer = ({ greeting}) => {
     const [products, setProducts] = useState([]);
     const {categoryId} = useParams ();
    
-  
 
-    useEffect(() => {
-
-        traerProductos()
-        .then((res) => {
-        console.log ("res:", res)
-         setProducts(res);
-        })
-        .catch((error) => {
+    useEffect(()=> {
+        if(categoryId){
+            traerProductosDeCategoria(categoryId)
+            .then((res)=>{
+                setProducts(res);
+            })
+            .catch((error)=>{
+                console.log(error);
+            }) 
+        } else { 
+            traerProductos()
+            .then((res)=>{
+                setProducts(res);
+            })
+            .catch((error)=>{
                 console.log(error);
             });
+        }
     }, [categoryId]);
-
 
     const onAdd = (quantity) => {
         console.log(`Compraste ${quantity} unidades`)

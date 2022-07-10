@@ -31,11 +31,14 @@ const ItemDetailContainer = ({ greeting}) => {
 
 
     return(
+     <>
         <div className="container mx-auto mt-5">
         <div>  {greeting} </div> 
         <ItemDetail  item={product}/>
        
-      </div>
+         </div>
+       
+     </>
  
     );
 }

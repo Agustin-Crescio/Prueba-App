@@ -1,13 +1,16 @@
 import React , {useContext} from "react";
+
 import {CartContext} from "../../Context/CartContext";
+import{createBuyOrder} from "../../services/firestore"
+import CartForm from "../CartView/CartForm"
 
 function CartView() {
 
-    const {cart} = useContext (CartContext);
+    const {cart , removeItem ,clearCart , totalPriceCart , handleBuyOrder} = useContext (CartContext);
 
-    if (cart.lenght === 0 ){
-     return   <h1>Nada en el carrito </h1>
-    }
+  
+
+
 
   return (
     <div>{
@@ -20,15 +23,22 @@ function CartView() {
             
             <img src={item.img} alt={item.name} width="200" />
             
-            <p>$ {item.description}</p>
+            <p>$ {item.price}</p>
+            <p>Cantidad de unidades : {item.qnty} </p>
+            <button onClick={ ()=>  removeItem(item.id)}></button>
+            <p>SubTotal : ${item.price * item.qnty}</p>
+            <div>
+              <p>Total a pagar : {totalPriceCart().tofixed(2)} </p>
+            </div>
             <hr />
             <br />
-          
+          <CartForm cart={cart} totalPriceCart={totalPriceCart}  clearCart ={clearCart} createBuyOrder = {createBuyOrder}></CartForm>
                
             </div>
         ))
          }
-         <button>Finalizar Compra</button>
+         <button onClick={handleBuyOrder}>Finalizar Compra</button>
+         <button onClick={clearCart}>Vaciar Carrito</button>
          </div>
   )
 }

@@ -16,18 +16,15 @@ function App() {
       <BrowserRouter>
         <NavBar />
           <Routes>
-            <Route path="/" element={
-               <ItemListContainer greeting="Bienvenidos a nuestro catálogo"/>
-            } />
-            <Route path="/category/:categoryId" element={
-               <ItemListContainer greeting="Categoria de Items"/>
-            } />
-             <Route path="/item/:itemId" element={
-               <ItemDetailContainer  greeting = "Detalle del producto"/>
-            } />
-            <Route path="/Cart" element={
-              <CartView />
-            }/>
+
+            <Route path="/" element={ <ItemListContainer greeting="Bienvenidos a nuestro catálogo"/> } />
+
+            <Route path="/category/:categoryId" element={<ItemListContainer greeting="Categoria de Items"/> } />
+
+
+             <Route path="/item/:itemId" element={<ItemDetailContainer  greeting = "Detalle del producto"/> } />
+
+            <Route path="/cart" element={<CartView/> }/>
             
           </Routes>
       </BrowserRouter >
